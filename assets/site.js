@@ -1,4 +1,20 @@
 (() => {
+  // Google Analytics reports are available only to authorized account users.
+  const analyticsMeasurementId = "G-0EXPJMST4P";
+  if (window.location.protocol === "https:" || window.location.protocol === "http:") {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("js", new Date());
+    window.gtag("config", analyticsMeasurementId);
+
+    const analyticsScript = document.createElement("script");
+    analyticsScript.async = true;
+    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsMeasurementId}`;
+    document.head.appendChild(analyticsScript);
+  }
   // GitHub Pages resolves directory links such as `about/` automatically.
   // When the downloaded site is opened directly from a computer, convert
   // those links to explicit index.html paths so every page remains usable.
